@@ -1,5 +1,7 @@
 #include "exercices.hpp"
 
+int direction = -1;
+
 MainSDLWindow::MainSDLWindow(){
     this ->window=NULL;
     this ->renderer= NULL;
@@ -37,26 +39,24 @@ void update(){
     const Uint8 *keystates = SDL_GetKeyboardState(NULL);
 
 	if ( keystates[SDL_SCANCODE_UP] ) {
-		rect.y -= 10;
-        if (rect.y <= 0)
-            rect.y =0;
+        if (direction != 1){
+            direction = 0;
+        }
 	}
 	if ( keystates[SDL_SCANCODE_DOWN] ) {
-		rect.y += 10;
-        if (rect.y >= 500-32)
-            rect.y =500-32;
+        if (direction != 0){
+            direction =1;
+        }
 	}
 	if ( keystates[SDL_SCANCODE_LEFT] ) {
-		rect.x -= 10;
-        if (rect.x <= 0)
-            rect.x =0;
+        if(direction != 3){
+            direction = 2;
+        }
 	}
 	if ( keystates[SDL_SCANCODE_RIGHT] ) {
-		rect.x += 10;
-        if (rect.x >= 500-32)
-            rect.x =500-32;
-	}
-    if ( keystates[SDL_SCANCODE_UP] && keystates[SDL_SCANCODE_RIGHT] || keystates[SDL_SCANCODE_UP] && keystates[SDL_SCANCODE_LEFT] || keystates[SDL_SCANCODE_DOWN] && keystates[SDL_SCANCODE_LEFT] || keystates[SDL_SCANCODE_DOWN] && keystates[SDL_SCANCODE_RIGHT]) {
+        if (direction !=2){
+            direction = 3;
+        }
 	}
 }
 
@@ -89,6 +89,38 @@ int main(void) {
             
         }
         update();
+        if (direction == 0){
+            rect.y -= 10;
+            if (rect.y <= 0){
+                rect.y =0;
+                direction = -1;
+            }
+
+        }
+        else if (direction == 1){
+            rect.y += 10;
+            if (rect.y >= 500-32){
+                rect.y =500-32;
+                direction = -1;
+            }
+                
+        }
+        else if (direction == 2){
+            rect.x -= 10;
+            if (rect.x <= 0){
+                rect.x =0;
+                direction = -1;
+            }
+
+        }
+        else if (direction == 3){
+            rect.x += 10;
+            if (rect.x >= 500-32){
+                rect.x =500-32;
+                direction = -1;
+            }
+
+        }
         main_window.draw();
         frameTime = SDL_GetTicks() - frameStart;
 		if ( frameTime < frameDelay )
