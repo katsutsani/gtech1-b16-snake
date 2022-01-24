@@ -1,0 +1,12 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class MainSDLWindow {
+MainSDLWindow()
+~MainSDLWindow()
+int Init(char* name, int lo, int la)
+SDL_Renderer* GetRenderer(void)
+SDL_Window *window
+SDL_Renderer *renderer
+}
+@enduml
