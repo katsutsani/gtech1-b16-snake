@@ -9,7 +9,7 @@ class MainSDLWindow{
     ~MainSDLWindow();
     int Init(char* name, int lo, int la);
     SDL_Renderer* GetRenderer(void);
-    void draw(int pointx, int pointy);
+    void draw();
 
     private:
     SDL_Window *window;

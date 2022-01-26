@@ -1,6 +1,10 @@
 #include "window.cpp"
+#include "snake.cpp"
 
 int direction = -1;
+
+int logrid = longueur/20;
+int lagrid = largeur/20;
 
 void update(){
     const Uint8 *keystates = SDL_GetKeyboardState(NULL);
@@ -30,16 +34,12 @@ void update(){
 
 
 int main(void) {
-    rect.x = 50;
-    rect.y = 50;
+    rect.x = 1*logrid;
+    rect.y = 1*lagrid;
     rect.w = 32;
     rect.h = 32;
-
-
-    fruit.w = 32;
-    fruit.h = 32;
-    int pointx = rand()%500;
-    int pointy = rand()%500;
+    Snake *snake = NULL;
+    snake = new Snake();
     MainSDLWindow main_window; 
     SDL_Event events;
     main_window.Init("test",500,500);
@@ -61,11 +61,11 @@ int main(void) {
 			}
             
         }
-        fruit.x = pointx;
-        fruit.y = pointy;
         update();
+        snake ->Move(direction);
+        snake->Print();
         if (direction == 0){
-            rect.y -= 10;
+            rect.y -= 1*50;
             if (rect.y <= 0){
                 rect.y =0;
                 direction = -1;
@@ -73,7 +73,7 @@ int main(void) {
 
         }
         else if (direction == 1){
-            rect.y += 10;
+            rect.y += 1*50;
             if (rect.y >= 500-32){
                 rect.y =500-32;
                 direction = -1;
@@ -81,7 +81,7 @@ int main(void) {
                 
         }
         else if (direction == 2){
-            rect.x -= 10;
+            rect.x -= 1*50;
             if (rect.x <= 0){
                 rect.x =0;
                 direction = -1;
@@ -89,20 +89,23 @@ int main(void) {
 
         }
         else if (direction == 3){
-            rect.x += 10;
+            rect.x += 1*50;
             if (rect.x >= 500-32){
                 rect.x =500-32;
                 direction = -1;
             }
 
         }
-        main_window.draw(pointx,pointy);
+        main_window.draw();
         frameTime = SDL_GetTicks() - frameStart;
 		if ( frameTime < frameDelay )
 		{
 			SDL_Delay( frameDelay - frameTime );
 		}
     }
-    main_window.~MainSDLWindow();  
+    if(snake != NULL){
+        delete snake;
+    }
+
     
 };
