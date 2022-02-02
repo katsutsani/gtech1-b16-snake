@@ -20,8 +20,26 @@ void Segment::Setnext(Segment*){
     this->next = new Segment();
 }
 
-void Segment::drawSegment(){
-    if (this->next != NULL){
-        drawSegment();
+void Segment::Print(int x,int y, int dir){
+    if(dir == 0){
+        y+=1;
+        printf("(%d,%d)",x,y); 
     }
+    else if(dir == 1){
+        y-=1;
+        printf("(%d,%d)",x,y); 
+    }
+    else if(dir == 2){
+        x+=1;
+        printf("(%d,%d)",x,y); 
+    }
+    else if(dir == 3){
+        x-=1;
+        printf("(%d,%d)",x,y); 
+    }
+    printf("%d",this->next);
+    if(this->next != NULL){
+        this->next->Print(x,y,dir);
+    }
+
 }

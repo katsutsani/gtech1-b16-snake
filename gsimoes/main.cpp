@@ -51,6 +51,8 @@ int main(void) {
     snake = new Snake();
     bool isOpen = true; 
     Uint32 iter;
+    snake->Gethead()->x = 9;
+    snake->Gethead()->y = 9;
     int snake_speed_fpc = 7;
     Uint32 frameStart, frameTime, frameDelay = 20;
     while (isOpen){
@@ -74,9 +76,10 @@ int main(void) {
         if (iter % snake_speed_fpc == 0) {
             snake ->Move(direction);
         }
-        snake->Eat();
         x =snake->Gethead()->x*logrid;
         y =snake->Gethead()->y*lagrid;
+        snake->Print();
+        snake->Eat(12);
         snake->drawHead(main_window.GetRenderer(),x,y);
         frameTime = SDL_GetTicks() - frameStart;
 		if ( frameTime < frameDelay )

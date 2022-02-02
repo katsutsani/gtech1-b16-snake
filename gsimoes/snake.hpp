@@ -6,13 +6,19 @@
 class Snake {
     public:
     Snake();
-    Snake(int x, int y);
     ~Snake();
+    int len();
     void Move(int direction);
-    void Eat();
+    void Eat(int test);
     void Print();
     Segment* Gethead(void);
+    Segment* Gettail(void);
     void drawHead(SDL_Renderer*,int x,int y);
     private:
     Segment* head;
+    Segment* tail;
+    int dir_prev;
+    int prev_tail_x;
+    int prev_tail_y;
+
 };
