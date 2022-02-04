@@ -22,7 +22,7 @@ int MainSDLWindow::Init(char* name,int lo,int la){
     };
     longueur = lo;
     largeur = la;
-    window = SDL_CreateWindow(name,SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,lo,la,SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow(name,SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,longueur,largeur,0);
     renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
     return EXIT_SUCCESS;
 };
