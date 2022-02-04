@@ -3,8 +3,8 @@
 
 int direction = -1;
 
-int logrid = longueur/20;
-int lagrid = largeur/20;
+int logrid;
+int lagrid;
 
 void update(){
     const Uint8 *keystates = SDL_GetKeyboardState(NULL);
@@ -13,37 +13,47 @@ void update(){
         if (direction != 1){
             direction = 0;
         }
+        return;
 	}
 	if ( keystates[SDL_SCANCODE_DOWN] ) {
         if (direction != 0){
             direction =1;
         }
+        return;
 	}
 	if ( keystates[SDL_SCANCODE_LEFT] ) {
         if(direction != 3){
             direction = 2;
         }
+        return;
 	}
 	if ( keystates[SDL_SCANCODE_RIGHT] ) {
         if (direction !=2){
             direction = 3;
         }
+        return;
 	}
 }
 
 
 
-int main(void) {
-    rect.x = 1*logrid;
-    rect.y = 1*lagrid;
-    rect.w = 32;
-    rect.h = 32;
-    Snake *snake = NULL;
-    snake = new Snake();
+int main(void) {    
+
+
     MainSDLWindow main_window; 
     SDL_Event events;
     main_window.Init("test",500,500);
+    int x = longueur/2;
+    int y = largeur/2;
+    logrid = longueur/20;
+    lagrid = largeur/20;
+    Snake *snake = NULL;
+    snake = new Snake();
     bool isOpen = true; 
+    Uint32 iter;
+    snake->Gethead()->x = 9;
+    snake->Gethead()->y = 9;
+    int snake_speed_fpc = 7;
     Uint32 frameStart, frameTime, frameDelay = 20;
     while (isOpen){
         frameStart = SDL_GetTicks();
@@ -61,47 +71,24 @@ int main(void) {
 			}
             
         }
+        snake->SetDirPrev(direction);
         update();
-        snake ->Move(direction);
+
+        if (iter % snake_speed_fpc == 0) {
+            snake ->Move(snake->Gethead(),direction);
+        }
+        x =snake->Gethead()->x*logrid;
+        y =snake->Gethead()->y*lagrid;
         snake->Print();
-        if (direction == 0){
-            rect.y -= 1*50;
-            if (rect.y <= 0){
-                rect.y =0;
-                direction = -1;
-            }
-
-        }
-        else if (direction == 1){
-            rect.y += 1*50;
-            if (rect.y >= 500-32){
-                rect.y =500-32;
-                direction = -1;
-            }
-                
-        }
-        else if (direction == 2){
-            rect.x -= 1*50;
-            if (rect.x <= 0){
-                rect.x =0;
-                direction = -1;
-            }
-
-        }
-        else if (direction == 3){
-            rect.x += 1*50;
-            if (rect.x >= 500-32){
-                rect.x =500-32;
-                direction = -1;
-            }
-
-        }
-        main_window.draw();
+        snake->Eat(rand()%20,rand()%20);
+        snake->draw(snake->Gethead(),main_window.GetRenderer(),x,y);
+        SDL_RenderPresent(main_window.GetRenderer());
         frameTime = SDL_GetTicks() - frameStart;
 		if ( frameTime < frameDelay )
 		{
 			SDL_Delay( frameDelay - frameTime );
 		}
+        iter++;
     }
     if(snake != NULL){
         delete snake;
