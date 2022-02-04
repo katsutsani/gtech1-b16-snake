@@ -71,16 +71,18 @@ int main(void) {
 			}
             
         }
+        snake->SetDirPrev(direction);
         update();
 
         if (iter % snake_speed_fpc == 0) {
-            snake ->Move(direction);
+            snake ->Move(snake->Gethead(),direction);
         }
         x =snake->Gethead()->x*logrid;
         y =snake->Gethead()->y*lagrid;
         snake->Print();
-        snake->Eat(12);
-        snake->drawHead(main_window.GetRenderer(),x,y);
+        snake->Eat(rand()%20,rand()%20);
+        snake->draw(snake->Gethead(),main_window.GetRenderer(),x,y);
+        SDL_RenderPresent(main_window.GetRenderer());
         frameTime = SDL_GetTicks() - frameStart;
 		if ( frameTime < frameDelay )
 		{

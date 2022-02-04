@@ -13,4 +13,8 @@ class Playground :public Snake ,public fruit {
     fruit* GetFruit(void);
     int GetScore();
     void GenerateFruit();
+    private:
+    Snake* snake;
+    int nbcol;
+    int nbrow;
 };

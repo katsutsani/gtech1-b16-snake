@@ -8,17 +8,18 @@ class Snake {
     Snake();
     ~Snake();
     int len();
-    void Move(int direction);
-    void Eat(int test);
+    void Move(Segment*,int direction);
+    void Eat(int test, int test2);
     void Print();
     Segment* Gethead(void);
     Segment* Gettail(void);
-    void drawHead(SDL_Renderer*,int x,int y);
+    int GetDirPrev();
+    void SetDirPrev(int direction);
+    void draw(Segment*,SDL_Renderer*,int x,int y);
+    int prev_tail_x;
+    int prev_tail_y;
     private:
     Segment* head;
     Segment* tail;
     int dir_prev;
-    int prev_tail_x;
-    int prev_tail_y;
-
 };
