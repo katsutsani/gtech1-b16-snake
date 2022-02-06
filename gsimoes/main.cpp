@@ -1,5 +1,7 @@
 #include "window.cpp"
 #include "snake.cpp"
+#include "fruit.cpp"
+
 
 int direction = -1;
 
@@ -38,8 +40,6 @@ void update(){
 
 
 int main(void) {    
-
-
     MainSDLWindow main_window; 
     SDL_Event events;
     main_window.Init("test",500,500);
@@ -49,6 +49,8 @@ int main(void) {
     lagrid = largeur/20;
     Snake *snake = NULL;
     snake = new Snake();
+    Fruit *fruit = NULL;
+    fruit = new Fruit();
     bool isOpen = true; 
     Uint32 iter;
     snake->Gethead()->x = 9;
@@ -79,10 +81,14 @@ int main(void) {
         }
         x =snake->Gethead()->x*logrid;
         y =snake->Gethead()->y*lagrid;
+
+        if(snake->Gethead()->x == fruit->x && snake->Gethead()->y == fruit->y){
+            snake->Eat();
+            fruit->randomSpawn();
+        }
         snake->Print();
-        snake->Eat(rand()%20,rand()%20);
+        fruit->DrawFruit(main_window.GetRenderer());
         snake->draw(snake->Gethead(),main_window.GetRenderer(),x,y);
-        SDL_RenderPresent(main_window.GetRenderer());
         frameTime = SDL_GetTicks() - frameStart;
 		if ( frameTime < frameDelay )
 		{

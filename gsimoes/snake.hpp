@@ -9,7 +9,7 @@ class Snake {
     ~Snake();
     int len();
     void Move(Segment*,int direction);
-    void Eat(int test, int test2);
+    void Eat();
     void Print();
     Segment* Gethead(void);
     Segment* Gettail(void);

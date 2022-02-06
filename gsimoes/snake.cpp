@@ -31,7 +31,7 @@ void Snake::SetDirPrev(int direction){
 void Snake::Move(Segment*,int direction){
     this->prev_tail_x =this->head->x;
     this->prev_tail_y =this->head->y;
-    printf("prev (%d,%d)\n", this->prev_tail_x, this->prev_tail_y);
+    this->dir_prev = this->head->direction;
     if (direction == 0){
         this->head->y -= 1;
         this->head->direction=0;
@@ -63,19 +63,25 @@ void Snake::Move(Segment*,int direction){
             this->head->x =19;
         }
     }
+    if(this->head->Getnext() != NULL){
+        this->head->Getnext()->SegmentMove(this->dir_prev,this->prev_tail_x,this->prev_tail_y);
+    }
 };
 
 void Snake::Print(){
     printf("head (%d,%d)\n", this->head->x, this->head->y);
     if (this->head->Getnext() != NULL){
-        this->head->Getnext()->Print(this->head->Getnext(), dir_prev);
+        this->head->Getnext()->Print(this->head->Getnext());
     }
 };
 
-void Snake::Eat(int test,int test2){
-    if(test == this->head->x && test2 == this->head->y){
-        this->head->Setnext(head,this->prev_tail_x,this->prev_tail_y,this->dir_prev);
-        this->tail;
+void Snake::Eat(){
+    if(this->head->Getnext() != NULL){
+        printf("test");
+        this->head->Getnext()->Setnext(this->prev_tail_x,this->prev_tail_y,this->dir_prev);
+    }
+    else{
+        this->head->Setnext(this->prev_tail_x,this->prev_tail_y,this->dir_prev);
     }
 };
 
@@ -89,4 +95,10 @@ void Snake::draw(Segment*,SDL_Renderer*renderer,int x,int y){
     SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer,255,255,255,SDL_ALPHA_OPAQUE);
     SDL_RenderDrawRect(renderer,&head);
+    if(this->head->Getnext() != NULL){
+        this->head->Getnext()->drawSegment(renderer);
+    }
+    else{
+        SDL_RenderPresent(renderer);
+    }
 }

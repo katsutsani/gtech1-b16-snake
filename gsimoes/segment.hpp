@@ -8,9 +8,10 @@ class Segment{
     void Segment_();
     ~Segment();
     Segment* Getnext(void);
-    void Setnext(Segment*,int x,int y,int prevdir);
-    void drawSegment(Segment*,SDL_Renderer*,int dir);
-    void Print(Segment*,int prev_dir);
+    void Setnext(int x,int y,int prevdir);
+    void SegmentMove(int dir, int prev_tail_x,int prev_tail_y);
+    void drawSegment(SDL_Renderer*);
+    void Print(Segment*);
     int direction;
     int x;
     int y;

@@ -2,10 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-class fruit{
+class Fruit{
     public:
-    fruit();
-    ~fruit();
+    Fruit();
+    ~Fruit();
+    void randomSpawn();
+    void DrawFruit(SDL_Renderer*renderer);
     int x;
     int y;
 };
