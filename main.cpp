@@ -77,18 +77,22 @@ int main(void) {
         update();
 
         if (iter % snake_speed_fpc == 0) {
-            snake ->Move(snake->Gethead(),direction);
+            snake->Move(snake->Gethead(),direction);
+            if(snake->Gethead()->x < 0 || snake->Gethead()->y < 0||snake->Gethead()->x > 19 || snake->Gethead()->y > 19){
+                isOpen = false;
+                break;
+            }
+            snake->Print();
+            if(snake->Gethead()->x == fruit->x && snake->Gethead()->y == fruit->y){
+                snake->Eat();
+                fruit->randomSpawn();
+            }
         }
         x =snake->Gethead()->x*logrid;
         y =snake->Gethead()->y*lagrid;
-
-        if(snake->Gethead()->x == fruit->x && snake->Gethead()->y == fruit->y){
-            snake->Eat();
-            fruit->randomSpawn();
-        }
-        snake->Print();
         fruit->DrawFruit(main_window.GetRenderer());
         snake->draw(snake->Gethead(),main_window.GetRenderer(),x,y);
+        SDL_RenderPresent(main_window.GetRenderer());
         frameTime = SDL_GetTicks() - frameStart;
 		if ( frameTime < frameDelay )
 		{
@@ -99,6 +103,4 @@ int main(void) {
     if(snake != NULL){
         delete snake;
     }
-
-    
 };

@@ -16,6 +16,7 @@ class Snake {
     int GetDirPrev();
     void SetDirPrev(int direction);
     void draw(Segment*,SDL_Renderer*,int x,int y);
+    int ColisionCheck();
     int prev_tail_x;
     int prev_tail_y;
     private:

@@ -1,12 +1,96 @@
 @startuml
-skinparam classAttributeIconSize 0
+
+
+
+
+
+/' Objects '/
+
+class Fruit {
+	+Fruit()
+	+~Fruit()
+	+x : int
+	+y : int
+	+DrawFruit(SDL_Renderer* renderer) : void
+	+randomSpawn() : void
+}
+
 
 class MainSDLWindow {
-MainSDLWindow()
-~MainSDLWindow()
-int Init(char* name, int lo, int la)
-SDL_Renderer* GetRenderer(void)
-SDL_Window *window
-SDL_Renderer *renderer
+	+MainSDLWindow()
+	+~MainSDLWindow()
+	+GetRenderer() : SDL_Renderer*
+	-renderer : SDL_Renderer*
+	-window : SDL_Window*
+	+Init(char* name, int lo, int la) : int
+	+draw() : void
 }
+
+
+class Segment {
+	+Segment()
+	+~Segment()
+	+Getnext() : Segment*
+	-next : Segment*
+	+SegmentColisionCheck() : int
+	+direction : int
+	+next_prev_dir : int
+	+next_prev_x : int
+	+next_prev_y : int
+	+x : int
+	+y : int
+	+Print(Segment*) : void
+	+SegmentMove(int dir, int prev_tail_x, int prev_tail_y) : void
+	+Segment_() : void
+	+Setnext(int x, int y, int prevdir, Segment*) : void
+	+drawSegment(SDL_Renderer*, Segment*) : void
+}
+
+
+class Snake {
+	+Snake()
+	+~Snake()
+	+Gethead() : Segment*
+	+Gettail() : Segment*
+	-head : Segment*
+	-tail : Segment*
+	+ColisionCheck() : int
+	+GetDirPrev() : int
+	-dir_prev : int
+	+len() : int
+	+prev_tail_x : int
+	+prev_tail_y : int
+	+Eat() : void
+	+Move(Segment*, int direction) : void
+	+Print() : void
+	+SetDirPrev(int direction) : void
+	+draw(Segment*, SDL_Renderer*, int x, int y) : void
+}
+
+
+
+
+
+/' Inheritance relationships '/
+
+
+
+
+/' Aggregation relationships '/
+
+.Segment o-- .Segment
+
+
+.Snake "2" o-- .Segment
+
+
+
+
+
+
+/' Nested objects '/
+
+
+
 @enduml
+

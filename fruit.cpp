@@ -8,7 +8,7 @@ Fruit::~Fruit(){}
 
 void Fruit::randomSpawn(){
     this->x = rand() % 19;
-    this-> y = rand() % 19;
+    this->y = rand() % 19;
 }
 
 void Fruit::DrawFruit(SDL_Renderer*renderer){
