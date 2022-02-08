@@ -71,3 +71,15 @@ void Segment::drawSegment(SDL_Renderer* renderer,Segment*){
         SDL_RenderPresent(renderer);
     }
 }
+
+int Segment::checkCollision(Segment*head){
+    if (head->x == this->next->x && head->y == this->next->y){
+        printf("touch\n");
+        return 1;
+    }
+    else{
+        if(next->Getnext() != NULL){
+            this->next->checkCollision(head);
+        }
+    }
+}
