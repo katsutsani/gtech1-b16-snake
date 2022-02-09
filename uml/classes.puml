@@ -22,8 +22,10 @@ class MainSDLWindow {
 	+GetRenderer() : SDL_Renderer*
 	-renderer : SDL_Renderer*
 	-window : SDL_Window*
+	-font : TTF_Font*
 	+Init(char* name, int lo, int la) : int
 	+draw() : void
+	+drawScore(int score) : void
 }
 
 
@@ -33,6 +35,7 @@ class Segment {
 	+Getnext() : Segment*
 	-next : Segment*
 	+SegmentColisionCheck() : int
+	+checkCollision(Segment* head) : int
 	+direction : int
 	+next_prev_dir : int
 	+next_prev_x : int
@@ -40,10 +43,10 @@ class Segment {
 	+x : int
 	+y : int
 	+Print(Segment*) : void
-	+SegmentMove(int dir, int prev_tail_x, int prev_tail_y) : void
+	+SegmentMove(int dir, int prev_tail_x, int prev_tail_y, Segment* ref) : void
 	+Segment_() : void
 	+Setnext(int x, int y, int prevdir, Segment*) : void
-	+drawSegment(SDL_Renderer*, Segment*) : void
+	+drawSegment(SDL_Renderer*, Segment*, char* angle) : void
 }
 
 
