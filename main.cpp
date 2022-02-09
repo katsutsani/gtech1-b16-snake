@@ -43,11 +43,11 @@ int main(void) {
     MainSDLWindow main_window; 
     SDL_Event events;
     int score = 0;
-    main_window.Init("test",500,500);
-    int x = longueur/2;
-    int y = largeur/2;
-    logrid = longueur/20;
-    lagrid = largeur/20;
+    main_window.Init("test",500,550);
+    int x = 500/2;
+    int y = 500/2;
+    logrid = 500/20;
+    lagrid = 500/20;
     Snake *snake = NULL;
     snake = new Snake();
     Fruit *fruit = NULL;
@@ -100,6 +100,7 @@ int main(void) {
         y =snake->Gethead()->y*lagrid;
         fruit->DrawFruit(main_window.GetRenderer());
         snake->draw(snake->Gethead(),main_window.GetRenderer(),x,y);
+        main_window.drawScore(score);
         SDL_RenderPresent(main_window.GetRenderer());
         frameTime = SDL_GetTicks() - frameStart;
 		if ( frameTime < frameDelay )
