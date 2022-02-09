@@ -75,8 +75,6 @@ void Snake::draw(Segment*,SDL_Renderer*renderer,int x,int y){
     head.y =  y;
     head.w = longueur/20;
     head.h = largeur/20;
-    SDL_SetRenderDrawColor(renderer,0,0,0,SDL_ALPHA_OPAQUE);
-    SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer,255,255,255,SDL_ALPHA_OPAQUE);
     SDL_RenderDrawRect(renderer,&head);
     if(this->head->Getnext() != NULL){

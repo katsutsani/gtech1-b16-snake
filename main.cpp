@@ -59,6 +59,8 @@ int main(void) {
     Uint32 frameStart, frameTime, frameDelay = 20;
     while (isOpen){
         frameStart = SDL_GetTicks();
+        SDL_SetRenderDrawColor(main_window.GetRenderer(),0,0,0,SDL_ALPHA_OPAQUE);
+        SDL_RenderClear(main_window.GetRenderer());
         while (SDL_PollEvent(&events))
         {
             if ( events.type == SDL_QUIT ) {
@@ -90,9 +92,8 @@ int main(void) {
         }
         x =snake->Gethead()->x*logrid;
         y =snake->Gethead()->y*lagrid;
-        fruit->DrawFruit(main_window.GetRenderer());
         snake->draw(snake->Gethead(),main_window.GetRenderer(),x,y);
-        SDL_RenderPresent(main_window.GetRenderer());
+        fruit->DrawFruit(main_window.GetRenderer());
         frameTime = SDL_GetTicks() - frameStart;
 		if ( frameTime < frameDelay )
 		{
@@ -102,5 +103,8 @@ int main(void) {
     }
     if(snake != NULL){
         delete snake;
+    }
+    if(fruit != NULL){
+        delete fruit;
     }
 };
