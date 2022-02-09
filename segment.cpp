@@ -60,8 +60,8 @@ void Segment::drawSegment(SDL_Renderer* renderer,Segment*){
     SDL_Rect next;
     next.x =  this->x*25;
     next.y =  this->y*25;
-    next.w = longueur/20;
-    next.h = largeur/20;
+    next.w = 500/20;
+    next.h = 500/20;
     SDL_SetRenderDrawColor(renderer,255,255,255,SDL_ALPHA_OPAQUE);
     SDL_RenderDrawRect(renderer,&next);
     if (this->next != NULL){
@@ -69,5 +69,16 @@ void Segment::drawSegment(SDL_Renderer* renderer,Segment*){
     }
     else{
         SDL_RenderPresent(renderer);
+    }
+}
+
+int Segment::checkCollision(Segment*head){
+    if (head->x == this->next->x && head->y == this->next->y){
+        return 1;
+    }
+    else{
+        if(next->Getnext() != NULL){
+            this->next->checkCollision(head);
+        }
     }
 }

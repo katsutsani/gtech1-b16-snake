@@ -4,7 +4,7 @@
 
 
 int direction = -1;
-
+int lose;
 int logrid;
 int lagrid;
 
@@ -42,11 +42,12 @@ void update(){
 int main(void) {    
     MainSDLWindow main_window; 
     SDL_Event events;
-    main_window.Init("test",500,500);
-    int x = longueur/2;
-    int y = largeur/2;
-    logrid = longueur/20;
-    lagrid = largeur/20;
+    int score = 0;
+    main_window.Init("test",500,550);
+    int x = 500/2;
+    int y = 500/2;
+    logrid = 500/20;
+    lagrid = 500/20;
     Snake *snake = NULL;
     snake = new Snake();
     Fruit *fruit = NULL;
@@ -88,12 +89,20 @@ int main(void) {
             if(snake->Gethead()->x == fruit->x && snake->Gethead()->y == fruit->y){
                 snake->Eat();
                 fruit->randomSpawn();
+                score ++;
+            }
+            if(snake->Gethead()->Getnext() != NULL){
+                lose = snake->Gethead()->checkCollision(snake->Gethead());
+                if (lose == 1){
+                    break;
+                }
             }
         }
         x =snake->Gethead()->x*logrid;
         y =snake->Gethead()->y*lagrid;
         snake->draw(snake->Gethead(),main_window.GetRenderer(),x,y);
-        fruit->DrawFruit(main_window.GetRenderer());
+        main_window.drawScore(score);
+        SDL_RenderPresent(main_window.GetRenderer());
         frameTime = SDL_GetTicks() - frameStart;
 		if ( frameTime < frameDelay )
 		{

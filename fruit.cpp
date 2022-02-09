@@ -1,4 +1,7 @@
 #include "fruit.hpp"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 Fruit::Fruit(){
     randomSpawn();
@@ -7,6 +10,8 @@ Fruit::Fruit(){
 Fruit::~Fruit(){}
 
 void Fruit::randomSpawn(){
+    srand(time(NULL));
+
     this->x = rand() % 19;
     this->y = rand() % 19;
 }
