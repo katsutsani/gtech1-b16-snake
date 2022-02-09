@@ -27,6 +27,9 @@ make run
 ## Controls
 
 ```UP_ARROW``` -> TO GO UP
+
 ```DOWN_ARROW``` -> TO GO DOWN
+
 ```LEFT_ARROW``` -> TO GO LEFT
+
 ```RIGHT_ARROW``` -> TO GO RIGHT
