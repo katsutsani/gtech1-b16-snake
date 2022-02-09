@@ -1,4 +1,4 @@
-# Creating a snake using C++ (with SDL2 library) Made for Linux environment
+# Creating a snake using C++ with SDL2 library (for Linux environment)
 
 ## SDL2 library and G++ compiler
 
@@ -27,9 +27,6 @@ make run
 ## Controls
 
 ```UP_ARROW``` -> TO GO UP
-
 ```DOWN_ARROW``` -> TO GO DOWN
-
 ```LEFT_ARROW``` -> TO GO LEFT
-
 ```RIGHT_ARROW``` -> TO GO RIGHT
