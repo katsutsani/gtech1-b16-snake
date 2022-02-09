@@ -49,7 +49,10 @@ void Segment::SegmentMove(int dir, int prev_tail_x, int prev_tail_y,Segment* ref
         this->y = prev_tail_y;
         this->direction = ref->direction;
     }
+    
     else if(ref->direction == LEFT && this->y == prev_tail_y || ref->direction == RIGHT && this->y == prev_tail_y ){
+        if(this->next != NULL){
+        }
         this->next_prev_x = this->x;
         this->next_prev_y = this->y;
         this->next_prev_dir = ref->direction;

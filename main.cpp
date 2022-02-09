@@ -54,14 +54,12 @@ int main(void) {
                             direction = UP;
                             break;
                         }
-                            
-                    case SDLK_DOWN:
-                        if (direction != UP && alreadyChanged != 1 || direction != NONE && alreadyChanged != 1){
+                    case SDLK_DOWN:   
+                        if(direction != UP && alreadyChanged != 1){
                             alreadyChanged = 1;
-                            direction = 1;
+                            direction = DOWN;
                             break;
-                        }
-                            
+                        }     
                     case SDLK_LEFT:
                         if (direction != RIGHT && alreadyChanged != 1){
                             alreadyChanged = 1;
@@ -83,6 +81,7 @@ int main(void) {
             alreadyChanged = 0;
             snake->Move(snake->Gethead(),direction);
             if(snake->Gethead()->x < 0 || snake->Gethead()->y < 0||snake->Gethead()->x > 19 || snake->Gethead()->y > 19){
+                printf("\nYou lose, your score was %d\n\n",score);
                 isOpen = false;
                 break;
             }
@@ -94,6 +93,7 @@ int main(void) {
             if(snake->Gethead()->Getnext() != NULL){
                 lose = snake->Gethead()->checkCollision(snake->Gethead());
                 if (lose == 1){
+                    printf("\nYou lose, your score was %d\n\n",score);
                     break;
                 }
             }

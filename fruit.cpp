@@ -5,16 +5,27 @@
 #include <SDL2/SDL_image.h>
 
 Fruit::Fruit(){
+    this->x=0;
+    this->y=0;
     randomSpawn();
 };
 
-Fruit::~Fruit(){}
+Fruit::~Fruit(){
+
+};
+
+int last_x;
+int last_y;
 
 void Fruit::randomSpawn(){
     srand(time(NULL));
-
+    last_x = this->x;
+    last_y = this->y;
     this->x = rand() % 19;
     this->y = rand() % 19;
+    if(last_x == this->x && last_y == this->y){
+        randomSpawn();
+    }
 }
 
 void Fruit::DrawFruit(SDL_Renderer*renderer){
