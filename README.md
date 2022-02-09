@@ -4,11 +4,15 @@
 
 ### Install SDL2, SDL_image and SDL_ttf : (graphical library)
 
-```sudo apt install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev```
+```
+sudo apt install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
+```
 
 ### Install G++ compiler and Make :
 
-```sudo apt install g++ make ```
+```
+sudo apt install g++ make 
+```
 
 ## Launch the game & controls
 
@@ -16,10 +20,12 @@
 
 Use Make to compile your code (be sure to be in the snake folder)
 
-```make run```
+```
+make run
+```
 
 ### Controls
-``UP_ARROW`` -> GO UP
-``DOWN_ARROW`` -> GO DOWN
-``LEFT_ARROW`` -> GO LEFT
-``RIGHT_ARROW`` -> GO RIGHT
+```UP_ARROW``` -> GO UP
+```DOWN_ARROW``` -> GO DOWN
+```LEFT_ARROW``` -> GO LEFT
+```RIGHT_ARROW``` -> GO RIGHT
