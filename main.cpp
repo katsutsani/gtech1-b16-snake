@@ -41,11 +41,13 @@ int main(void) {
         while (SDL_PollEvent(&events))
         {
             if ( events.type == SDL_QUIT ) {
+                printf("\nYou left the game, your score was %d\n\n",score);
 				isOpen = false;
 			}
 			else if ( events.type == SDL_KEYDOWN ) {
 				switch ( events.key.keysym.sym ) {
 				    case SDLK_ESCAPE:
+                        printf("\nYou left the game, your score was %d\n\n",score);
 					    isOpen = false;
 					    break;
                     case SDLK_UP:
@@ -75,7 +77,6 @@ int main(void) {
 				}
 			}         
         }
-        snake->SetDirPrev(direction);
 
         if (iter % snake_speed_fpc == 0) {
             alreadyChanged = 0;

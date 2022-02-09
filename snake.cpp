@@ -7,8 +7,6 @@
 #define RIGHT 3
 #define NONE -1
 
-char* angle;
-
 Snake::Snake(){
     this->head = new Segment();
     this->tail = new Segment();
