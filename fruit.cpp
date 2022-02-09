@@ -1,4 +1,8 @@
 #include "fruit.hpp"
+#include <SDL2/SDL_image.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 Fruit::Fruit(){
     randomSpawn();
@@ -7,6 +11,8 @@ Fruit::Fruit(){
 Fruit::~Fruit(){}
 
 void Fruit::randomSpawn(){
+    srand(time(NULL));
+
     this->x = rand() % 19;
     this->y = rand() % 19;
 }

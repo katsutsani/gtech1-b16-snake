@@ -11,6 +11,7 @@ class Segment{
     void Setnext(int x,int y,int prevdir,Segment*);
     void SegmentMove(int dir, int prev_tail_x,int prev_tail_y);
     void drawSegment(SDL_Renderer*, Segment*);
+    int checkCollision(Segment*head);
     int SegmentColisionCheck();
     void Print(Segment*);
     int direction;
