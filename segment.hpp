@@ -9,8 +9,8 @@ class Segment{
     ~Segment();
     Segment* Getnext(void);
     void Setnext(int x,int y,int prevdir,Segment*);
-    void SegmentMove(int dir, int prev_tail_x,int prev_tail_y);
-    void drawSegment(SDL_Renderer*, Segment*);
+    void SegmentMove(int dir, int prev_tail_x,int prev_tail_y, Segment* ref);
+    void drawSegment(SDL_Renderer*, Segment*,char* angle);
     int checkCollision(Segment*head);
     int SegmentColisionCheck();
     void Print(Segment*);

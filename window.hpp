@@ -1,6 +1,7 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <SDL2/SDL_ttf.h>
 
 class MainSDLWindow{
     public:
@@ -13,6 +14,7 @@ class MainSDLWindow{
     void drawScore(int score);
 
     private:
+    TTF_Font* font;
     SDL_Window *window;
     SDL_Renderer *renderer;
 
